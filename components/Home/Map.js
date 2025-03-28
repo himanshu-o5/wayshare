@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
-import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, MarkerF, OverlayView, OverlayViewF, useJsApiLoader } from "@react-google-maps/api";
 import { SourceContext } from "@/context/SourceContext";
 import { DestinationContext } from "@/context/DestinationContext";
 
@@ -77,12 +77,24 @@ const Map = () => {
             lat: source.lat,
             lng: source.lng,
           }}
-          label={source.label}
-          // icon={{
-          //   // url: "/source.png",
-          //   scaledSize: new window.google.maps.Size(30, 30),
-          // }}
-        />
+          // label={source.label}
+          icon={{
+            url: "/locationUserMarker.png",
+            scaledSize: new window.google.maps.Size(20, 20),
+          }}
+        >
+          <OverlayViewF 
+          position={{
+            lat: source.lat,
+            lng: source.lng,
+          }}
+          mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+          >
+            <div className="p-2 bg-white font-bold inline-block">
+              <p className="text-black text-[15px]">{(source.label)}</p>
+            </div>
+          </OverlayViewF>
+        </MarkerF>
       ) : null}
 
       {destination?.length != [] ? (
@@ -91,12 +103,24 @@ const Map = () => {
             lat: destination.lat,
             lng: destination.lng,
           }}
-          label={destination.label}
-          // icon={{
-          //   // url: "/destination.png",
-          //   scaledSize: new window.google.maps.Size(30, 30),
-          // }}
-        />
+          // label={destination.label}
+          icon={{
+            url: "/locationDestinationMarker.png",
+            scaledSize: new window.google.maps.Size(30, 30),
+          }}
+        >
+          <OverlayViewF 
+          position={{
+            lat: destination.lat,
+            lng: destination.lng,
+          }}
+          mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+          >
+            <div className="p-2 bg-white font-bold inline-block">
+              <p className="text-black text-[15px]">{(destination.label)}</p>
+            </div>
+          </OverlayViewF>
+          </MarkerF>
       ) : null}
 
       <></>
