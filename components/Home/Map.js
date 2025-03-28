@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
-import { GoogleMap, MarkerF, OverlayView, OverlayViewF, useJsApiLoader } from "@react-google-maps/api";
+import { DirectionsRenderer, DirectionsService, GoogleMap, MarkerF, OverlayView, OverlayViewF, useJsApiLoader } from "@react-google-maps/api";
 import { SourceContext } from "@/context/SourceContext";
 import { DestinationContext } from "@/context/DestinationContext";
 
@@ -24,6 +24,7 @@ const Map = () => {
   })
 
   const [map, setMap] = React.useState(null);
+  const [directionRoutePoints, setDirectionRoutePoints] = useState([]);
 
 
   useEffect(() => {
@@ -37,6 +38,11 @@ const Map = () => {
         lng: source.lng,
       })
     }
+
+    if(source.length != [] && destination.length != []){
+      directionRoute();
+    }
+
   }, [source])
 
   useEffect(() => {
@@ -46,7 +52,30 @@ const Map = () => {
         lng: destination.lng,
       });
     }
+
+    if(source.length != [] && destination.length != []){
+      directionRoute();
+    }
+
   }, [destination]);
+
+
+  const directionRoute = () => {
+    const DirectionsService = new google.maps.DirectionsService();
+    DirectionsService.route({
+      origin: {lat: source.lat, lng: source.lng},
+      destination: {lat: destination.lat, lng: destination.lng},
+      travelMode: google.maps.TravelMode.DRIVING
+    }, (result, status) => {
+      if(status === google.maps.DirectionsStatus.OK){
+        console.log(result)
+        setDirectionRoutePoints(result);
+      }
+      else{
+        console.error("Error in Routing Direction on map");
+      }
+    })
+  }
 
 
   const onLoad = React.useCallback(function callback(map) {
@@ -123,7 +152,16 @@ const Map = () => {
           </MarkerF>
       ) : null}
 
-      <></>
+      <DirectionsRenderer
+        directions={directionRoutePoints}
+        options={{
+          suppressMarkers: true,
+          polylineOptions: {
+            strokeColor: "#000",
+            strokeWeight: 5
+          }
+        }}
+        />
     </GoogleMap>
   );
 };
