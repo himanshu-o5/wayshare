@@ -152,7 +152,8 @@ const Map = () => {
           </MarkerF>
       ) : null}
 
-      <DirectionsRenderer
+      {directionRoutePoints?.length != [] ? (
+        <DirectionsRenderer
         directions={directionRoutePoints}
         options={{
           suppressMarkers: true,
@@ -161,7 +162,7 @@ const Map = () => {
             strokeWeight: 5
           }
         }}
-        />
+        />) : null}
     </GoogleMap>
   );
 };
