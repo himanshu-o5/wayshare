@@ -47,7 +47,7 @@ const InputItem = (props) => {
           console.log(place);
           getLongitudeAndLatitude(place);
         }}
-        className='w-full m-0 border-none outline-none bg-slate-200'
+        className='w-full m-0 border-none outline-none bg-slate-200 rounded-md'
       />
     </div>
   );

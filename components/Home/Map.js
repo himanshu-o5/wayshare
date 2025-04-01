@@ -19,9 +19,9 @@ const Map = () => {
   const { destination, setDestination } = useContext(DestinationContext);
 
   const [center, setCenter] = useState({
-    lat: -3.745,
-    lng: -38.523,
-  })
+    lat: 20.5937,
+    lng: 78.9629,
+  });
 
   const [map, setMap] = React.useState(null);
   const [directionRoutePoints, setDirectionRoutePoints] = useState([]);
@@ -94,7 +94,7 @@ const Map = () => {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={15}
+      zoom={7}
       onLoad={onLoad}
       onUnmount={onUnmount}
       options={{ mapId: process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID }}
@@ -106,7 +106,6 @@ const Map = () => {
             lat: source.lat,
             lng: source.lng,
           }}
-          // label={source.label}
           icon={{
             url: "/locationUserMarker.png",
             scaledSize: new window.google.maps.Size(20, 20),

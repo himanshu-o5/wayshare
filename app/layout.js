@@ -40,8 +40,10 @@ export default function RootLayout({ children }) {
         <body
           className={`${montserrat.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <Header />
-          {children}
+          <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white">
+            {/* <Header /> */}
+            {children}
+          </div>
         </body>
       </html>
     </ClerkProvider>
