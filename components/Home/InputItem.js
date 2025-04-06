@@ -1,5 +1,6 @@
 "use client"
 import { DestinationContext } from '@/context/DestinationContext';
+import { DirectionRoutePointContext } from '@/context/DirectionRoutePointContext';
 import { SourceContext } from '@/context/SourceContext';
 import React, { useContext } from 'react'
 import Autocomplete from "react-google-autocomplete";
@@ -9,6 +10,7 @@ const InputItem = (props) => {
 
   const { source, setSource } = useContext(SourceContext);
   const { destination, setDestination } = useContext(DestinationContext);
+  const { directionRoutePoints, setDirectionRoutePoints } = useContext(DirectionRoutePointContext);
 
 
   const getLongitudeAndLatitude = (place) => {
@@ -35,6 +37,15 @@ const InputItem = (props) => {
           });
         }
       }
+      else{
+        if(props.type === "source") {
+          setSource(null);
+        }
+        else if(props.type === "destination") {
+          setDestination(null);
+        }
+        console.error("Error in getting longitude and latitude");
+      }
     });
   }
 
@@ -46,6 +57,15 @@ const InputItem = (props) => {
         onPlaceSelected={(place) => {
           console.log(place);
           getLongitudeAndLatitude(place);
+        }}
+        onChange={(e) => {
+          setDirectionRoutePoints([]);
+          if(props.type === "source") {
+            setSource("");
+          }
+          else if(props.type === "destination") {
+            setDestination("");
+          }
         }}
         className='w-full m-0 border-none outline-none bg-slate-200 rounded-md'
       />

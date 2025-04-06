@@ -4,13 +4,11 @@ import InputItem from './InputItem'
 import { SourceContext } from '@/context/SourceContext';
 import { DestinationContext } from '@/context/DestinationContext';
 import CarListOptions from './CarListOptions';
-import { SessionUserContext } from '@/context/SessionUserContext';
 
 const SearchRide = () => {
 
   const { source, setSource } = useContext(SourceContext);
   const { destination, setDestination } = useContext(DestinationContext);
-  const { sessionUser, setSessionUser } = useContext(SessionUserContext);
   const [distance, setDistance] = useState();
 
 
@@ -24,18 +22,26 @@ const SearchRide = () => {
       {lat: source.lat, lng: source.lng},
       {lat: destination.lat, lng: destination.lng}
     )
-    console.log(sessionUser)
 
     setDistance(dist/1000);
   }
 
+  const clearInput = (type) => {
+    if(type === "source"){
+      setSource(null);
+    }
+    else if(type === "destination"){
+      setDestination(null);
+    }
+    setDistance(null);
+  }
 
   return (
     <>
       <div className="p-2 md:p-6 border-[1px] border-slate-600 rounded-xl bg-white shadow-lg shadow-gray-700 text-black">
         <p className="text-[20px] font-bold">Get a ride</p>
-        <InputItem location="Pickup Location" type="source" />
-        <InputItem location="Drop Location" type="destination" />
+        <InputItem location="Pickup Location" type="source" onClick={() => clearInput("source")}/>
+        <InputItem location="Drop Location" type="destination" onClick={() => clearInput("destination")}/>
         <button
           className="p-3 bg-black w-full mt-5 text-white rounded-lg hover:cursor-pointer"
           onClick={() => calculateDistance()}

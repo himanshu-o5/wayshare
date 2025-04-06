@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { DirectionsRenderer, DirectionsService, GoogleMap, MarkerF, OverlayView, OverlayViewF, useJsApiLoader } from "@react-google-maps/api";
 import { SourceContext } from "@/context/SourceContext";
 import { DestinationContext } from "@/context/DestinationContext";
+import { DirectionRoutePointContext } from "@/context/DirectionRoutePointContext";
 
 const containerStyle = {
   width: "100%",
@@ -17,6 +18,7 @@ const Map = () => {
   // });
   const { source, setSource } = useContext(SourceContext);
   const { destination, setDestination } = useContext(DestinationContext);
+  const {directionRoutePoints, setDirectionRoutePoints} = useContext(DirectionRoutePointContext);
 
   const [center, setCenter] = useState({
     lat: 20.5937,
@@ -24,7 +26,7 @@ const Map = () => {
   });
 
   const [map, setMap] = React.useState(null);
-  const [directionRoutePoints, setDirectionRoutePoints] = useState([]);
+  // const [directionRoutePoints, setDirectionRoutePoints] = useState([]);
 
 
   useEffect(() => {
