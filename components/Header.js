@@ -10,6 +10,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import { SessionUserContext } from "@/context/SessionUserContext";
+import axios from "axios";
 
 const Header = () => {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -27,6 +28,28 @@ const Header = () => {
       });
     }
   }, [isLoaded, isSignedIn, user]);
+
+
+  useEffect(() => {
+    if (sessionUser && sessionUser.id) {
+      const registerUser = async () => {
+        try {
+            const response = await axios.post("/api/register/user/", {
+              firstName: sessionUser.firstName,
+              lastName: sessionUser.lastName,
+              email: sessionUser.email,
+              userId: sessionUser.id,
+            });
+            return response;
+          
+        } catch (error) {
+          console.error("Error registering user:", error);
+        }
+      };
+      registerUser();
+    }
+  }, [sessionUser]);
+
 
   return (
     <header className="flex justify-between items-center border-b mx-8 border-[rgba(255,255,255,0.15)]">
