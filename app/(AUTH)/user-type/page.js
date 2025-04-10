@@ -1,11 +1,11 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { SessionUserContext } from "@/context/SessionUserContext";
-import { set } from "mongoose";
+import Link from "next/link";
 
 const page = () => {
-  const [showUserTypeOptions, setShowUserTypeOptions] = React.useState(false);
+  const [showUserTypeOptions, setShowUserTypeOptions] = useState(false);
   const { user, isLoaded, isSignedIn } = useUser();
   const { sessionUser, setSessionUser } = useContext(SessionUserContext);
 
@@ -22,7 +22,7 @@ const page = () => {
       return;
     }
     const data = await res.json();
-    if (data.message === "user exists") {
+    if (data.message !== "user does not exist") {
       setSessionUser({
         id: user.id,
         email: user.primaryEmailAddress.emailAddress,
@@ -30,10 +30,10 @@ const page = () => {
         lastName: user.lastName,
         hasImage: user.hasImage,
         imageURL: user.imageUrl,
+        userType: data.message,
       });
       window.location.href = "/";
-    }
-    else{
+    } else {
       setShowUserTypeOptions(true);
     }
   }
@@ -69,11 +69,12 @@ const page = () => {
       lastName: user.lastName,
       hasImage: user.hasImage,
       imageURL: user.imageUrl,
+      userType: "user",
     });
     window.location.href = "/";
   };
 
-  const handleDriverClick = async () => {};
+  
 
   return (
     <div>
@@ -83,15 +84,12 @@ const page = () => {
             <h1 className="text-2xl font-bold text-center">Select User Type</h1>
             <button
               onClick={handleUserClick}
-              className="bg-blue-500 text-white py-2 px-4 rounded"
+              className="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer"
             >
               User
             </button>
-            <button
-              onClick={handleDriverClick}
-              className="bg-green-500 text-white py-2 px-4 rounded"
-            >
-              Driver
+            <button className="bg-green-500 text-white py-2 px-4 rounded cursor-pointer">
+              <Link href="/register/driver">Driver</Link>
             </button>
           </div>
         </div>

@@ -1,10 +1,13 @@
 "use client";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useUser } from "@clerk/nextjs";
+import { SessionUserContext } from "@/context/SessionUserContext";
 
 export default function DriverForm() {
   const { user, isLoaded, isSignedIn } = useUser();
+  const { sessionUser, setSessionUser } = useContext(SessionUserContext);
+  
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -35,6 +38,20 @@ export default function DriverForm() {
             },
           }
         );
+        if (res.status !== 201) {
+          alert("Error submitting form");
+          return;
+        }
+        setSessionUser({
+          id: user.id,
+          email: user.primaryEmailAddress.emailAddress,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          hasImage: user.hasImage,
+          imageURL: user.imageUrl,
+          userType: "driver",
+        })
+        
         // Redirect to the driver dashboard or show a success message
         alert("Driver registered successfully");
         window.location.href = "/";

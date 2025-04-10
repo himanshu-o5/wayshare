@@ -16,19 +16,6 @@ const Header = () => {
   const { isLoaded, isSignedIn, user } = useUser();
   const { sessionUser, setSessionUser } = useContext(SessionUserContext);
 
-  useEffect(() => {
-    if (isLoaded && isSignedIn) {
-      setSessionUser({
-        id: user.id,
-        email: user.primaryEmailAddress.emailAddress,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        hasImage: user.hasImage,
-        imageURL: user.imageUrl
-      });
-    }
-  }, [isLoaded, isSignedIn, user]);
-
 
   useEffect(() => {
     if (sessionUser && sessionUser.id) {

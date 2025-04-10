@@ -7,17 +7,17 @@ export const POST = async (req) => {
     const { userId } = await req.json();
     try{
         await connectDB();
-        let user = await User.findOne({ userId});
+        let user = await User.findOne({ userId: userId});
         if (user) {
           return NextResponse.json(
-            { message: "user exists" },
+            { message: "user" },
             { status: 201 }
           );
         }
-        user = await Driver.findOne({ userId });
+        user = await Driver.findOne({ driverId: userId });
         if(user){
           return NextResponse.json(
-            { message: "user exists" },
+            { message: "driver" },
             { status: 201 }
           );
         }
