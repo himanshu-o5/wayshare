@@ -1,9 +1,8 @@
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
-import {
-  ClerkProvider
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import Header from "@/components/Header";
+import { SessionUserProvider } from "@/context/SessionUserContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,8 +18,6 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
 });
-
-
 
 export const metadata = {
   title: "Wayshare",
@@ -40,10 +37,12 @@ export default function RootLayout({ children }) {
         <body
           className={`${montserrat.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white">
-            {/* <Header /> */}
-            {children}
-          </div>
+          <SessionUserProvider>
+            <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white">
+              {/* <Header /> */}
+              {children}
+            </div>
+          </SessionUserProvider>
         </body>
       </html>
     </ClerkProvider>

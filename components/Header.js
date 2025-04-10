@@ -63,8 +63,10 @@ const Header = () => {
       ) : (
         <div className="flex justify-end items-center gap-4 h-16">
           <SignedOut>
-            <SignInButton className="hover:cursor-pointer" />
-            <SignUpButton className="hover:cursor-pointer" />
+            <SignInButton
+              forceRedirectUrl="/user-type"
+              className="hover:cursor-pointer"
+            />
           </SignedOut>
           <SignedIn>
             <UserButton />

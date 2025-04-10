@@ -14,7 +14,7 @@ import UserPage from "@/components/UserPage";
 export default function Home() {
   const [source, setSource] = useState([]);
   const [destination, setDestination] = useState([]);
-  const [sessionUser, setSessionUser] = useState([]);
+  // const [sessionUser, setSessionUser] = useState([]);
   const [directionRoutePoints, setDirectionRoutePoints] = useState([]);
 
   const { mapLoaded } = useJsApiLoader({
@@ -27,7 +27,7 @@ export default function Home() {
     <div className="">
       <SourceContext.Provider value={{ source, setSource }}>
         <DestinationContext.Provider value={{ destination, setDestination }}>
-          <SessionUserContext.Provider value={{ sessionUser, setSessionUser }}>
+          {/* <SessionUserContext.Provider value={{ sessionUser, setSessionUser }}> */}
             <DirectionRoutePointContext.Provider value={{directionRoutePoints, setDirectionRoutePoints}}>
               {/* <LoadScript
                 googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API}
@@ -43,7 +43,7 @@ export default function Home() {
                 </SignedOut>
               {/* </LoadScript> */}
             </DirectionRoutePointContext.Provider>
-          </SessionUserContext.Provider>
+          {/* </SessionUserContext.Provider> */}
         </DestinationContext.Provider>
       </SourceContext.Provider>
     </div>
