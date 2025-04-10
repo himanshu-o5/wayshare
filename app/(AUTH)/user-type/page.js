@@ -23,15 +23,15 @@ const page = () => {
     }
     const data = await res.json();
     if (data.message !== "user does not exist") {
-      setSessionUser({
-        id: user.id,
-        email: user.primaryEmailAddress.emailAddress,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        hasImage: user.hasImage,
-        imageURL: user.imageUrl,
-        userType: data.message,
-      });
+      // setSessionUser({
+      //   id: user.id,
+      //   email: user.primaryEmailAddress.emailAddress,
+      //   firstName: user.firstName,
+      //   lastName: user.lastName,
+      //   hasImage: user.hasImage,
+      //   imageURL: user.imageUrl,
+      //   userType: data.message,
+      // });
       window.location.href = "/";
     } else {
       setShowUserTypeOptions(true);
@@ -62,15 +62,15 @@ const page = () => {
       console.log("Error creating user");
       return;
     }
-    setSessionUser({
-      id: user.id,
-      email: user.primaryEmailAddress.emailAddress,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      hasImage: user.hasImage,
-      imageURL: user.imageUrl,
-      userType: "user",
-    });
+    // setSessionUser({
+    //   id: user.id,
+    //   email: user.primaryEmailAddress.emailAddress,
+    //   firstName: user.firstName,
+    //   lastName: user.lastName,
+    //   hasImage: user.hasImage,
+    //   imageURL: user.imageUrl,
+    //   userType: "user",
+    // });
     window.location.href = "/";
   };
 

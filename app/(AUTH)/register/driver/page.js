@@ -42,15 +42,15 @@ export default function DriverForm() {
           alert("Error submitting form");
           return;
         }
-        setSessionUser({
-          id: user.id,
-          email: user.primaryEmailAddress.emailAddress,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          hasImage: user.hasImage,
-          imageURL: user.imageUrl,
-          userType: "driver",
-        })
+        // setSessionUser({
+        //   id: user.id,
+        //   email: user.primaryEmailAddress.emailAddress,
+        //   firstName: user.firstName,
+        //   lastName: user.lastName,
+        //   hasImage: user.hasImage,
+        //   imageURL: user.imageUrl,
+        //   userType: "driver",
+        // })
         
         // Redirect to the driver dashboard or show a success message
         alert("Driver registered successfully");

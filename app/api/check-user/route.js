@@ -4,30 +4,30 @@ import User from "@/models/User";
 import { NextResponse } from "next/server";
 
 export const POST = async (req) => {
-    const { userId } = await req.json();
-    try{
-        await connectDB();
-        let user = await User.findOne({ userId: userId});
-        if (user) {
-          return NextResponse.json(
-            { message: "user" },
-            { status: 201 }
-          );
-        }
-        user = await Driver.findOne({ driverId: userId });
-        if(user){
-          return NextResponse.json(
-            { message: "driver" },
-            { status: 201 }
-          );
-        }
-        return NextResponse.json(
-          { message: "user does not exist" },
-          { status: 201 }
-        );
+  const { userId } = await req.json();
+  try {
+    await connectDB();
+    let user;
 
-    } catch (error) {
-        console.error("Error creating user:", error);
-        return NextResponse.json({ message: "Error creating user" }, { status: 500 });
+    user = await Driver.findOne({ driverId: userId });
+    if (user) {
+      return NextResponse.json({ message: "driver", user }, { status: 201 });
     }
-}
+
+    user = await User.findOne({ userId: userId });
+    if (user) {
+      return NextResponse.json({ message: "user", user }, { status: 201 });
+    }
+    
+    return NextResponse.json(
+      { message: "user does not exist" },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error("Error creating user:", error);
+    return NextResponse.json(
+      { message: "Error creating user" },
+      { status: 500 }
+    );
+  }
+};
