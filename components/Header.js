@@ -44,7 +44,7 @@ const Header = () => {
         <Link href="/" className="text-2xl font-light">
           Wayshare
         </Link>
-        {sessionUser ? <Link href="/rides" className="px-6">
+        {sessionUser.userId ? <Link href="/rides" className="px-6">
           Rides
         </Link> : null}
       </div>
