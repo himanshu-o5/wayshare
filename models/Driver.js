@@ -1,18 +1,5 @@
 import mongoose from "mongoose";
 
-// driver = await Driver.create({
-//   ,
-//   ,
-//   ,
-//   ,
-//   phone,
-//   carType,
-//   carColor,
-//   carNumber,
-//   fuelType,
-//   seatingCapacity,
-// });
-
 const DriverSchema = new mongoose.Schema({
   driverId: {
     type: String,

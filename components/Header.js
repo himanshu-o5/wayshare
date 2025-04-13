@@ -17,25 +17,25 @@ const Header = () => {
   const { sessionUser, setSessionUser } = useContext(SessionUserContext);
 
 
-  useEffect(() => {
-    if (sessionUser && sessionUser.id) {
-      const registerUser = async () => {
-        try {
-            const response = await axios.post("/api/register/user/", {
-              firstName: sessionUser.firstName,
-              lastName: sessionUser.lastName,
-              email: sessionUser.email,
-              userId: sessionUser.id,
-            });
-            return response;
+  // useEffect(() => {
+  //   if (sessionUser && sessionUser.id) {
+  //     const registerUser = async () => {
+  //       try {
+  //           const response = await axios.post("/api/register/user/", {
+  //             firstName: sessionUser.firstName,
+  //             lastName: sessionUser.lastName,
+  //             email: sessionUser.email,
+  //             userId: sessionUser.id,
+  //           });
+  //           return response;
           
-        } catch (error) {
-          console.error("Error registering user:", error);
-        }
-      };
-      registerUser();
-    }
-  }, [sessionUser]);
+  //       } catch (error) {
+  //         console.error("Error registering user:", error);
+  //       }
+  //     };
+  //     registerUser();
+  //   }
+  // }, [sessionUser]);
 
 
   return (
@@ -44,6 +44,9 @@ const Header = () => {
         <Link href="/" className="text-2xl font-light">
           Wayshare
         </Link>
+        {sessionUser ? <Link href="/rides" className="px-6">
+          Rides
+        </Link> : null}
       </div>
       {!isLoaded ? (
         <>Loading...</>

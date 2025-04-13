@@ -12,10 +12,6 @@ const SearchRide = () => {
   const [distance, setDistance] = useState();
 
 
-  // useEffect(() => {
-  //   if(source) console.log(source);
-  //   if(destination) console.log(destination);
-  // }, [source, destination])
 
   const calculateDistance = () => {
     const dist = google.maps.geometry.spherical.computeDistanceBetween(

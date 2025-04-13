@@ -1,7 +1,6 @@
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
-import Header from "@/components/Header";
 import { SessionUserProvider } from "@/context/SessionUserContext";
 
 const geistSans = Geist({
@@ -39,7 +38,6 @@ export default function RootLayout({ children }) {
         >
           <SessionUserProvider>
             <div className="min-h-screen bg-white text-black dark:bg-black dark:text-white">
-              {/* <Header /> */}
               {children}
             </div>
           </SessionUserProvider>

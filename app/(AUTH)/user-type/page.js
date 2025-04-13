@@ -1,13 +1,11 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
-import { SessionUserContext } from "@/context/SessionUserContext";
 import Link from "next/link";
 
 const page = () => {
   const [showUserTypeOptions, setShowUserTypeOptions] = useState(false);
   const { user, isLoaded, isSignedIn } = useUser();
-  const { sessionUser, setSessionUser } = useContext(SessionUserContext);
 
   const handleUser = async () => {
     const res = await fetch("/api/check-user", {
@@ -23,15 +21,6 @@ const page = () => {
     }
     const data = await res.json();
     if (data.message !== "user does not exist") {
-      // setSessionUser({
-      //   id: user.id,
-      //   email: user.primaryEmailAddress.emailAddress,
-      //   firstName: user.firstName,
-      //   lastName: user.lastName,
-      //   hasImage: user.hasImage,
-      //   imageURL: user.imageUrl,
-      //   userType: data.message,
-      // });
       window.location.href = "/";
     } else {
       setShowUserTypeOptions(true);
@@ -62,15 +51,6 @@ const page = () => {
       console.log("Error creating user");
       return;
     }
-    // setSessionUser({
-    //   id: user.id,
-    //   email: user.primaryEmailAddress.emailAddress,
-    //   firstName: user.firstName,
-    //   lastName: user.lastName,
-    //   hasImage: user.hasImage,
-    //   imageURL: user.imageUrl,
-    //   userType: "user",
-    // });
     window.location.href = "/";
   };
 

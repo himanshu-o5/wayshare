@@ -12,10 +12,6 @@ const containerStyle = {
 
 
 const Map = () => {
-  // const { isLoaded } = useJsApiLoader({
-  //   id: "google-map-script",
-  //   googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API,
-  // });
   const { source, setSource } = useContext(SourceContext);
   const { destination, setDestination } = useContext(DestinationContext);
   const {directionRoutePoints, setDirectionRoutePoints} = useContext(DirectionRoutePointContext);
@@ -26,7 +22,6 @@ const Map = () => {
   });
 
   const [map, setMap] = React.useState(null);
-  // const [directionRoutePoints, setDirectionRoutePoints] = useState([]);
 
 
   useEffect(() => {
@@ -81,7 +76,6 @@ const Map = () => {
 
 
   const onLoad = React.useCallback(function callback(map) {
-    // This is just an example of getting and using the map instance!!! don't just blindly copy!
     const bounds = new window.google.maps.LatLngBounds(center);
     map.fitBounds(bounds);
 
@@ -133,7 +127,6 @@ const Map = () => {
             lat: destination.lat,
             lng: destination.lng,
           }}
-          // label={destination.label}
           icon={{
             url: "/locationDestinationMarker.png",
             scaledSize: new window.google.maps.Size(30, 30),
