@@ -38,7 +38,7 @@ const CarListOptions = ({distance}) => {
     };
     // console.log(sessionUser);
     // console.log("Request Ride Data:", requestRideData);
-    const registerUser = async () => {
+    const requestRide = async () => {
       try {
           const response = await fetch("/api/request-ride", {
             method: "POST",
@@ -47,13 +47,20 @@ const CarListOptions = ({distance}) => {
             },
             body: JSON.stringify(requestRideData),
           });
-          return response;
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        console.log("Ride Request Response:", data);
+        return response;
       } catch (error) {
         console.error("Error Requesting Ride:", error);
       }
+      finally {
+        window.location.href = "/rides";
+      }
     };
-    registerUser();
-    // window.location.href = "/rides";
+    requestRide();
   }
 
   return (

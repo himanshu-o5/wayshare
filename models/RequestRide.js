@@ -4,7 +4,7 @@ const RequestRideSchema = new mongoose.Schema({
   userId: {
     type: String,
     required: true,
-    unique: true,
+    unique: false
   },
   firstName: {
     type: String,
@@ -37,7 +37,7 @@ const RequestRideSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  distance:{
+  distance: {
     type: Number,
     required: true,
   },
@@ -49,10 +49,12 @@ const RequestRideSchema = new mongoose.Schema({
     type: String,
     enum: ["pending", "completed", "cancelled"],
     default: "pending",
-  }
+  },
 });
 
 // Avoid redefining the model during hot reloads in dev
-const RequestRide = mongoose.models.RequestRide || mongoose.model("RequestRide", RequestRideSchema);
+const RequestRide =
+  mongoose.models.RequestRide ||
+  mongoose.model("RequestRide", RequestRideSchema);
 
 export default RequestRide;

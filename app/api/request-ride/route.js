@@ -26,9 +26,9 @@ export const POST = async (req) => {
     );
 
   } catch (error) {
-    console.error("Error creating user:", error);
+    console.error("Error creating Ride:", error);
     return NextResponse.json(
-      { message: "Error creating user" },
+      { message: "Error creating Ride" },
       { status: 500 }
     );
   }
