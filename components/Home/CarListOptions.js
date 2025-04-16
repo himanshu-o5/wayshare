@@ -15,13 +15,7 @@ const CarListOptions = ({distance}) => {
 
   const handleSearchRideClick = () => {
     const selectedCar = CarListData[activeIndex];
-    // console.log("Selected Car:", selectedCar);
-    // console.log("Distance:", distance);
     const totalAmount = (selectedCar.amount * distance).toFixed(2);
-    // console.log("Total Amount:", totalAmount);
-    // console.log("Session User:", sessionUser);
-    // console.log("Source:", source);
-    // console.log("Destination:", destination);
 
     const requestRideData = {
       userId: sessionUser.userId,

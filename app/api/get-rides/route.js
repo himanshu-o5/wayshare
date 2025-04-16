@@ -17,7 +17,7 @@ export const GET = async (req) => {
       // Connect to the database
       await connectDB();
       const rides = await RequestRide.find({ status: "pending" });
-      console.log(rides);
+      // console.log(rides);
       return NextResponse.json(rides);
     }
 

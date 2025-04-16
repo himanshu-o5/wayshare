@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const RequestRideSchema = new mongoose.Schema({
+  driverId: {
+    type: String,
+    required: false,
+    unique: false
+  },
   userId: {
     type: String,
     required: true,
@@ -47,7 +52,7 @@ const RequestRideSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["pending", "completed", "cancelled"],
+    enum: ["pending", "completed", "cancelled", "accepted"],
     default: "pending",
   },
 });
