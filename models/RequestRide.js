@@ -55,6 +55,21 @@ const RequestRideSchema = new mongoose.Schema({
     enum: ["pending", "completed", "cancelled", "accepted"],
     default: "pending",
   },
+  driverName: {
+    type: String,
+  },
+  carNumber: {
+    type: String,
+  },
+  phone: {
+    type: String,
+  },
+  carColor: {
+    type: String,
+  },
+  carType: {
+    type: String,
+  },
 });
 
 // Avoid redefining the model during hot reloads in dev

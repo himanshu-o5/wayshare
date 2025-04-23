@@ -21,7 +21,7 @@ export default function Home() {
   const { mapLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API,
-    libraries: ["places"], // optional if you use autocomplete etc.
+    libraries: ["places"], 
   });
 
   useEffect(() => {
@@ -52,9 +52,7 @@ export default function Home() {
     }
   }, [user, isLoaded, isSignedIn]);
 
-  // useEffect(() => {
-  //   console.log(sessionUser);
-  // }, [sessionUser]); // Log sessionUser whenever it changes
+
 
   return (
     <div className="">

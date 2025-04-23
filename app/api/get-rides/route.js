@@ -6,6 +6,14 @@ export const GET = async (req) => {
   try {
     const userId = req.headers.get("userId"); // Extract userId from headers
     const driverId = req.headers.get("driverId"); // Extract driverId from headers
+    const rideId = req.headers.get("rideId"); // Extract rideId from headers
+
+    if(rideId){
+      // Connect to the database
+      await connectDB();
+      const ride = await RequestRide.findById(rideId);
+      return NextResponse.json(ride);
+    }
     
     if(userId){
       // Connect to the database
@@ -16,7 +24,7 @@ export const GET = async (req) => {
     else if(driverId){
       // Connect to the database
       await connectDB();
-      const rides = await RequestRide.find({ status: "pending" });
+      const rides = await RequestRide.find({ status: "pending" }).sort({ date: -1 });
       // console.log(rides);
       return NextResponse.json(rides);
     }
