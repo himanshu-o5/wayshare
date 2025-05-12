@@ -17,8 +17,8 @@ const Map = () => {
   const {directionRoutePoints, setDirectionRoutePoints} = useContext(DirectionRoutePointContext);
 
   const [center, setCenter] = useState({
-    lat: 20.5937,
-    lng: 78.9629,
+    lat: 30.5161,
+    lng: 76.6598,
   });
 
   const [map, setMap] = React.useState(null);

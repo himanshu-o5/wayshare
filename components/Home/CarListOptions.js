@@ -60,7 +60,7 @@ const CarListOptions = ({distance}) => {
   return (
     <>
       <div className="mt-5 p-5 overflow-auto h-[350px]">
-        <h2 className="text-[25px] mb-3 font-bold">Reccomended</h2>
+        <h2 className="text-[25px] mb-3 font-bold">Recommended</h2>
         {CarListData.map((item, index) => (
           <div
             className={`cursor-pointer p-2 px-4 rounded-md ${

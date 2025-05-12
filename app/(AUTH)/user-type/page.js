@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { User as UserIcon } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 
@@ -54,28 +55,41 @@ const page = () => {
     window.location.href = "/";
   };
 
-  
-
   return (
-    <div>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-6">
       {showUserTypeOptions && (
-        <div className="flex justify-center items-center h-screen">
-          <div className="flex flex-col gap-4">
-            <h1 className="text-2xl font-bold text-center">Select User Type</h1>
-            <button
-              onClick={handleUserClick}
-              className="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer"
-            >
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+          {/* User Option */}
+          <div
+            onClick={handleUserClick}
+            className="w-56 h-70 flex flex-col items-center justify-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer"
+          >
+            <UserIcon
+              size={48}
+              className="text-green-600 dark:text-green-400"
+            />
+            <span className="mt-4 text-xl font-semibold text-gray-800 dark:text-gray-100">
               User
-            </button>
-            <button className="bg-green-500 text-white py-2 px-4 rounded cursor-pointer">
-              <Link href="/register/driver">Driver</Link>
-            </button>
+            </span>
           </div>
+
+          {/* Driver Option */}
+          <Link href="/register/driver" passHref>
+            <div className="w-56 h-70 flex flex-col items-center justify-center bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer">
+              <UserIcon
+                size={48}
+                className="text-green-600 dark:text-green-400"
+              />
+              <span className="mt-4 text-xl font-semibold text-gray-800 dark:text-gray-100">
+                Driver
+              </span>
+            </div>
+          </Link>
         </div>
       )}
     </div>
   );
+
 };
 
 export default page;

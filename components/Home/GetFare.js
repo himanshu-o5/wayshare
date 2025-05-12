@@ -97,29 +97,28 @@ const GetFare = () => {
             <div
               key={ride._id}
               onClick={() => handleCheckFare(ride)}
-              className="m-3 border-gray-800 border-1 flex flex-col md:flex-row justify-between items-start md:items-center bg-black hover:bg-gray-900 transition-colors rounded-2xl p-4 mb-3 shadow-lg cursor-pointer"
+              className="m-3 border-gray-800 border-1 flex flex-col md:flex-row justify-between items-start md:items-center bg-black hover:bg-gray-900 transition-colors rounded-2xl p-4 mb-3 shadow-lg cursor-pointer dark:bg-gray-900 dark:hover:bg-gray-800"
             >
               <div className="flex-1">
-                {console.log(ride)}
-                <h3 className="text-lg font-semibold text-white">
+                <h3 className="text-lg font-semibold text-white dark:text-gray-200">
                   {ride.firstName + (ride.lastName ? " " + ride.lastName : "")}
                 </h3>
-                <p className="text-sm text-gray-300 mt-1">
+                <p className="text-sm text-gray-300 dark:text-gray-400 mt-1">
                   <span className="block">
                     Source:{" "}
-                    <span className="font-medium text-white">
+                    <span className="font-medium text-white dark:text-gray-200">
                       {ride.source}
                     </span>
                   </span>
                   <span className="block">
                     Destination:{" "}
-                    <span className="font-medium text-white">
+                    <span className="font-medium text-white dark:text-gray-200">
                       {ride.destination}
                     </span>
                   </span>
                   <span className="block">
                     Amount:{" "}
-                    <span className="text-green-400 font-semibold">
+                    <span className="text-green-400 dark:text-green-500 font-semibold">
                       {ride.amount}
                     </span>
                   </span>
@@ -128,10 +127,10 @@ const GetFare = () => {
 
               <button
                 onClick={(e) => {
-                  e.stopPropagation(); // prevent parent click
+                  e.stopPropagation(); 
                   handleAcceptFare(ride._id);
                 }}
-                className="mt-3 md:mt-0 md:ml-4 bg-green-500 hover:bg-green-600 text-black font-medium rounded-lg px-4 py-2 transition-colors shadow-md"
+                className="mt-3 md:mt-0 md:ml-4 bg-green-500 hover:bg-green-600 text-black dark:text-white font-medium rounded-lg px-4 py-2 transition-colors shadow-md dark:bg-green-600 dark:hover:bg-green-700"
               >
                 Accept Fare
               </button>
@@ -150,4 +149,4 @@ const GetFare = () => {
   );
 }
 
-export default GetFare
+export default GetFare;

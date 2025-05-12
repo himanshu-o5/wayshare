@@ -5,7 +5,7 @@ export const CarListData = [
     seat: 4,
     desc: "Affordable, Everyday Rides",
     amount: 1.1,
-    image: "/CarRegular",
+    image: "/CarRegular.png",
   },
   {
     id: 2,

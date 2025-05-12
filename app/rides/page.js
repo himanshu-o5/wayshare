@@ -1,13 +1,11 @@
 "use client";
 import { SessionUserContext } from "@/context/SessionUserContext";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 const page = () => {
-  const { sessionUser, setSessionUser } = useContext(SessionUserContext);
+  const { sessionUser } = useContext(SessionUserContext);
   const [rides, setRides] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  
 
   const fetchRides = async () => {
     setLoading(true);
@@ -16,12 +14,10 @@ const page = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          userId: sessionUser.userId, 
+          userId: sessionUser.userId,
         },
       });
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+      if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
       setRides(data);
     } catch (error) {
@@ -30,19 +26,18 @@ const page = () => {
       setLoading(false);
     }
   };
-  React.useEffect(() => {
-    if(sessionUser.userId == undefined || sessionUser.userId == null){
+
+  useEffect(() => {
+    if (!sessionUser?.userId) {
       window.location.href = "/";
+    } else {
+      fetchRides();
     }
-    fetchRides();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  if (rides?.length === 0) {
-    return <div>No rides available</div>;
-  }
+  if (loading) return <div className="p-6">Loading...</div>;
+  if (rides?.length === 0) return <div className="p-6">No rides available</div>;
+
   const groupedRides = rides.reduce((acc, ride) => {
     acc[ride.status] = acc[ride.status] || [];
     acc[ride.status].push(ride);
@@ -50,12 +45,12 @@ const page = () => {
   }, {});
 
   return (
-    <div className="min-h-screen bg-black text-white p-6">
+    <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white p-6">
       <h1 className="text-3xl font-bold mb-6">Your Rides</h1>
 
       {Object.entries(groupedRides).map(([status, rideList]) => (
         <div key={status} className="mb-8">
-          <h2 className="text-xl font-semibold capitalize mb-3 border-b border-gray-700 pb-1">
+          <h2 className="text-xl font-semibold capitalize mb-3 border-b border-gray-300 dark:border-gray-700 pb-1">
             {status}
           </h2>
           <ul className="space-y-2">
@@ -63,12 +58,12 @@ const page = () => {
               <li
                 key={ride._id}
                 onClick={() => (window.location.href = `/rides/${ride._id}`)}
-                className="p-4 bg-gray-900 hover:bg-gray-800 rounded-lg cursor-pointer transition-colors shadow-md"
+                className="p-4 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg cursor-pointer transition-colors shadow-md"
               >
                 <div className="text-lg font-medium">
                   {ride.source} → {ride.destination}
                 </div>
-                <div className="text-sm text-gray-400 mt-1">
+                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                   Status: {ride.status}
                 </div>
               </li>
@@ -78,7 +73,6 @@ const page = () => {
       ))}
     </div>
   );
-
 };
 
 export default page;

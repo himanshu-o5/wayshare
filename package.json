@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^6.12.9",
     "@react-google-maps/api": "^2.20.6",
     "axios": "^1.8.4",
+    "lucide-react": "^0.503.0",
     "mongoose": "^8.13.2",
     "next": "15.2.4",
     "react": "^19.0.0",
