@@ -59,21 +59,28 @@ const CarListOptions = ({distance}) => {
 
   return (
     <>
-      <div className="mt-5 p-5 overflow-auto h-[350px]">
-        <h2 className="text-[25px] mb-3 font-bold">Recommended</h2>
-        {CarListData.map((item, index) => (
-          <div
-            className={`cursor-pointer p-2 px-4 rounded-md ${
-              activeIndex == index ? "border-[1px] " : null
-            }`}
-            onClick={() => setActiveIndex(index)}
-            key={index}
-          >
-            <CarListItems car={item} distance={distance} />
-          </div>
-        ))}
+      <div className="py-4">
+        <h2 className="text-[25px] m-3  px-3 font-bold">Recommended</h2>
+        <div className="overflow-auto h-[350px]">
+          {CarListData.map((item, index) => (
+            <div
+              className={`cursor-pointer p-2 px-4 rounded-md ${
+                activeIndex == index ? "border-[1px] " : null
+              }`}
+              onClick={() => setActiveIndex(index)}
+              key={index}
+            >
+              <CarListItems car={item} distance={distance} />
+            </div>
+          ))}
+        </div>
+        <button
+          onClick={() => handleSearchRideClick()}
+          className="px-5 py-3 border-2 rounded-md w-full mt-5 cursor-pointer font-bold"
+        >
+          Search Ride
+        </button>
       </div>
-        <button onClick={() => handleSearchRideClick()} className="px-5 py-3 border-2 rounded-md w-full mt-2 cursor-pointer">Search Ride</button>
     </>
   );
 }

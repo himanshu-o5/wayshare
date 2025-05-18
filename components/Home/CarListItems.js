@@ -8,7 +8,13 @@ const CarListItems = ({car, distance}) => {
     <div>
       <div className="flex items-center justify-between mt-5">
         <div className="flex items-center gap-5">
-          <Image src={car.image} alt={" "} width={100} height={100} />
+          <Image
+            src={car.image}
+            alt={"-"}
+            width={70}
+            height={70}
+            className="filter brightness-0 dark:invert mx-5 my-2"
+          />
           <div>
             <h2 className="font-semibold text-[18px] flex gap-3 items-center">
               {car.name}{" "}
@@ -20,7 +26,7 @@ const CarListItems = ({car, distance}) => {
           </div>
         </div>
         <h2 className="text-[18px] font-semibold">
-          ${(car.amount * distance).toFixed(2)}
+          ₹{(car.amount * distance).toFixed(2)}
         </h2>
       </div>
     </div>
