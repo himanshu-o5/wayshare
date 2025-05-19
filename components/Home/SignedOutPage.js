@@ -20,7 +20,7 @@ export default function HomePage() {
     {
       id: 2,
       name: "Mike T.",
-      text: "As a driver, I've met great people and earned extra income on trips I was already taking.",
+      text: "As a driver, I\'ve met great people and earned extra income on trips I was already taking.",
       avatar: "/api/placeholder/40/40",
     },
     {
@@ -102,8 +102,7 @@ export default function HomePage() {
               How Wayshare Works
             </h2>
             <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-              Our platform makes it easy to find or offer rides, whether it's a
-              daily commute or a one-time trip.
+              {"Our platform makes it easy to find or offer rides, whether it's a daily commute or a one-time trip."}
             </p>
           </div>
           <div className="flex flex-col md:flex-row gap-8">
@@ -201,7 +200,7 @@ export default function HomePage() {
                     </h4>
                   </div>
                 </div>
-                <p className="text-gray-600 italic">"{testimonial.text}"</p>
+                <p className="text-gray-600 italic">&quot;{testimonial.text}&quot;</p>
               </div>
             ))}
           </div>
@@ -243,7 +242,7 @@ export default function HomePage() {
               forceRedirectUrl="/user-type"
               className="px-8 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-green-600 hover:bg-green-700"
             >
-              Sign Up Now - It's Free
+              {"Sign Up Now - It's Free"}
             </SignInButton>
             <a
               href="#"

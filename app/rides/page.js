@@ -2,7 +2,7 @@
 import { SessionUserContext } from "@/context/SessionUserContext";
 import React, { useContext, useState, useEffect } from "react";
 
-const page = () => {
+const Page = () => {
   const { sessionUser } = useContext(SessionUserContext);
   const [rides, setRides] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -75,4 +75,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

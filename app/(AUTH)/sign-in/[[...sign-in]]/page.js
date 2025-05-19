@@ -2,6 +2,7 @@
 
 import { SignIn } from "@clerk/nextjs";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SignInPage() {
   return (
@@ -23,13 +24,13 @@ export default function SignInPage() {
         </p>
         <SignIn routing="path" path="/sign-in" signUpUrl="/sign-up" />
         <p className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
-          Don't have an account?{" "}
-          <a
-            href="/sign-up"
+          Don&apos;t have an account?{" "}
+          <Link
+            to="/sign-up"
             className="text-indigo-600 dark:text-indigo-400 hover:underline"
           >
             Sign Up
-          </a>
+          </Link>
         </p>
       </div>
     </div>

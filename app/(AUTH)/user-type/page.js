@@ -4,7 +4,7 @@ import { User as UserIcon } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 
-const page = () => {
+const Page = () => {
   const [showUserTypeOptions, setShowUserTypeOptions] = useState(false);
   const { user, isLoaded, isSignedIn } = useUser();
 
@@ -92,4 +92,4 @@ const page = () => {
 
 };
 
-export default page;
+export default Page;

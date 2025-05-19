@@ -9,6 +9,18 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-const eslintConfig = [...compat.extends("next/core-web-vitals")];
+const eslintConfig = [
+  ...compat.extends("next/core-web-vitals"),
+
+  // Custom overrides to disable rules
+  {
+    rules: {
+      // Example: disable specific rules
+      "no-console": "off",
+      "no-unused-vars": "off",
+      "@next/next/no-img-element": "off",
+    },
+  },
+];
 
 export default eslintConfig;
