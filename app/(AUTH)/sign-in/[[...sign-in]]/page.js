@@ -26,7 +26,7 @@ export default function SignInPage() {
         <p className="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
           Don&apos;t have an account?{" "}
           <Link
-            to="/sign-up"
+            href="/sign-up"
             className="text-indigo-600 dark:text-indigo-400 hover:underline"
           >
             Sign Up
